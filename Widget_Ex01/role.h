@@ -13,26 +13,33 @@ private:
     int posX,posY;
     int width,height;
     int speed;
-    int jump;
     QTimer timer;
     int figIndex;
-
+    int jumpNum = 2;
+    bool down;
 public:
-    QPixmap figurePix[5];
+    QPixmap figurePix[6];
 
     Role();
     void initialize();
+    bool isJump();
+    void subJumpNum(){jumpNum--;}
+    int getJumpNum(){return jumpNum;}
+    void setDown();
     void setBlood(int blood){this->blood = blood;}
+    void setPosX(int x){posX = x;}
+    void setPosY(int y){posY = y;}
     int getBlood(){return blood;}
     int getWidth(){return width;}
     int getHeight(){return height;}
     int getPosX(){return posX;}
-    int getPosY(){return posY;}
+    int getPosY();
+    int getSpeed(){return speed;}
     int getFigIndex(){return figIndex;}
     //void jump();
 
 public slots:
-    void changeFig();
+    int getFig();
 
 };
 

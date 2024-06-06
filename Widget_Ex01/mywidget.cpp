@@ -20,7 +20,7 @@ MyWidget::MyWidget(QWidget *parent)
 {
 
     ui->setupUi(this);
-    mainwindow = new MainWindow;
+
     this->setWindowIcon(QIcon(":/head.png"));
     this->setWindowTitle("火柴人酷跑");
     this->setFixedSize(1450,820);
@@ -35,29 +35,33 @@ MyWidget::MyWidget(QWidget *parent)
     startBtn->setParent(this);
 
 
-    QMessageBox* message = new QMessageBox(this);
+    QMessageBox* recordMsg = new QMessageBox(this);
+    QMessageBox* operateMsg = new QMessageBox(this);
+    QMessageBox* instructMsg = new QMessageBox(this);
 
-    message->setText("您的最高分数是：\n用时：  秒\n");
+    recordMsg->setFont(QFont("STKaiti",  12));
+    operateMsg->setFont(QFont("STKaiti", 12));
+    instructMsg->setFont(QFont("STKaiti", 12));
+
+
+    recordMsg->setText("您的最高分数是：\n用时：  秒\n");
+    operateMsg->setText("操作说明：\n1.W————上跳(最高连续两次)\n2.A————后退\n3.D————前进");
+    instructMsg->setText("教程：\n1.碰撞障碍物减血\n2.人物可以自动回血或拾取爱心回血\n3.拾取小锤清除障当前碍物");
+
     connect(recordBtn,&QPushButton::clicked,[=](){
-        message->show();
+        recordMsg->show();
     });
-
-    message->setText("操作说明：\n1.W————上跳(最高连续两次)\n2.A————后退\n3.D————前进");
     connect(operateBtn,&QPushButton::clicked,[=](){
-        message->show();
+        operateMsg->show();
     });
-
-    message->setText("教程：\n1.碰撞障碍物减血\n2.人物可以自动回血或拾取爱心回血\n3.拾取小锤清除障当前碍物");
     connect(instructBtn,&QPushButton::clicked,[=](){
-        message->show();
+        instructMsg->show();
     });
-
     connect(startBtn, &QPushButton::clicked, [=]() {
+        mainwindow = new MainWindow;
         mainwindow->show();
         this->showMinimized();
-
     });
-
 
 }
 
