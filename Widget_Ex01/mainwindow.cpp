@@ -116,7 +116,7 @@ void MainWindow::paintEvent(QPaintEvent*)
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
 
-    if (event->key() == Qt::Key_Q) {
+    if (event->key() == Qt::Key_W) {
         keyWPressed = true;
     }
     if (event->key() == Qt::Key_A) {
@@ -128,7 +128,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Q) {
+    if (event->key() == Qt::Key_W) {
         keyWPressed = false;
     }
     if (event->key() == Qt::Key_A) {
