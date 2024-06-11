@@ -1,6 +1,10 @@
-#ifndef MYWIDGET_H
+﻿#ifndef MYWIDGET_H
 #define MYWIDGET_H
 
+#include <QDebug>
+#include <QSound>
+#include <QIcon>
+#include <QMessageBox>
 #include <QWidget>
 #include<QPainter>
 #include "mainwindow.h"
@@ -17,7 +21,12 @@ public:
     ~MyWidget();
     void paintEvent(QPaintEvent*);
 
+    void readRecord();
+    static QSound* startsound;
+    static void playMusic();
+    static void stopMusic();
 private:
+    int maxScores,maxSeconds;
     MainWindow* mainwindow;
     Ui::MyWidget *ui;
 };

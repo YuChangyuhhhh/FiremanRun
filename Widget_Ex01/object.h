@@ -1,82 +1,84 @@
-#ifndef OBJECT_H
+﻿#ifndef OBJECT_H
 #define OBJECT_H
-#include "mainwindow.h"
+
 #include <cstdlib>  // For std::rand and std::srand
 #include <ctime>    // For std::time
+#include <math.h>
 #include "role.h"
+//#include "mainwindow.h"
 
+class MainWindow;
 class Object{
 private:
     QPixmap obPix;
     int speed;
     int posX,posY;
     int width,height;
-
+    Role* role;
+    int power;
+    int score;
 public:
     Object();
-    Object(int x,int y,int w,int h):posX(x),posY(y),width(w),height(h){}
-    bool remain(MainWindow&); //判断物品位于屏幕
+    Object(int x,int y,int w,int h,int s,int p,int score, QPixmap pix,Role* r): posX(x), posY(y), width(w), height(h), speed(s), obPix(pix),role(r),power(p),score(score){}
+    bool remain(MainWindow*); //判断物品位于屏幕
     void generateY();        //生成物品坐标Y
-    bool touchRole(Role&); //判断人物物品接触
-    int getPosX(){return posX;}
+    bool touchRole(); //判断人物物品接触
+    bool touchMonster(Monster* monster);
+    void hurt();
+    virtual void addScore();
+    int getPower(){return power;}
+    void setPosX(int x){posX = x;}
+    int getPosX(){
+        posX -= speed;
+        return posX;
+    }
     int getPosY(){return posY;}
     int getWidth(){return width;}
     int getHeight(){return height;}
+    QPixmap getPix(){return obPix;}
+    int getSpeed(){return speed;}
+    Role* getRole(){return role;}
 
 };
 
-//障碍物类
-class Barrier:public Object{
-private:
-    int power;
+
+//子弹
+class Bullet:public Object{
 public:
-    Barrier(int x,int y,int w,int h,int p):Object(x,y,w,h),power(p){}
-    void dead();
-    void hurt(Role& );
+    Bullet(MainWindow*,Role*);
 };
 
 //墙体
-class Wall:public Barrier{
+class Wall:public Object{
 public:
-    Wall(MainWindow*);
+    Wall(MainWindow*,Role*);
+
 };
 
-class Cat:public Barrier{
+//猫
+class Cat:public Object{
 public:
-
+    Cat(MainWindow*,Role*);
 };
 
 //血包
-class Assitance:public Object{
-private:
-    int blood;
+class Assistance:public Object{
 public:
-    void assist(Role&);
-
+    Assistance(MainWindow*,Role*r);
 };
 
 //武器
-class Weapon:public Object{
+class Sword:public Object{
 public:
-    void clean();
-};
-
-class Coin:public Object{
-private:
-
-    int pixIndex;
-    int score;
-public:
-    void addScore(Role&);
-
+    Sword(MainWindow*,Role*);
+    void addCalls();
+    void addScore();
 };
 
 //宝石
 class Jewel:public Object{
-private:
-    int score;
 public:
-    void addScore(Role&);
+    Jewel(MainWindow*,Role*);
 };
 
 #endif // OBJECT_H

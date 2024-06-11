@@ -25,5 +25,20 @@
         <file>wall2.png</file>
         <file>startBkg.png</file>
         <file>startBkg2.png</file>
+        <file>sword.png</file>
+        <file>monster1.png</file>
+        <file>monster2.png</file>
+        <file>monster3.png</file>
+        <file>monster4.png</file>
+        <file>jewel.png</file>
+        <file>hurt.png</file>
+        <file>gameover.jpg</file>
+        <file>button.wav</file>
+        <file>jump.wav</file>
+        <file>theme.wav</file>
+        <file>touch.wav</file>
+        <file>kunkun.wav</file>
+        <file>heart.png</file>
+        <file>buff.wav</file>
     </qresource>
 </RCC>

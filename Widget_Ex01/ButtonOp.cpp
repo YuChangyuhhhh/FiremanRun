@@ -1,4 +1,4 @@
-#include "ButtonOp.h"
+﻿#include "ButtonOp.h"
 #include <QPixmap>
 #include <QPainter>
 int MyButton::count = -1;
